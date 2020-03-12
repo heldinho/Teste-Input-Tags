@@ -74,6 +74,9 @@
 </template>
 <script>
 import InputTag from 'vue-input-tag'
+
+const $$ = document.querySelectorAll.bind(document)
+
 export default {
   name: 'Teste',
   props: ['title'],
@@ -89,9 +92,17 @@ export default {
   methods: {
     withTags(tag) {
       if (tag == '') return false
-
       if (this.allTags.includes(tag.toUpperCase())) {
+        // if (this.tags.includes(tag.toUpperCase())) return false
+        this.tags.push(tag.toUpperCase())
         this.$refs.tag.newTag = ''
+        var arrTags = $$('.input-tag')
+        arrTags[0].style.backgroundColor = 'red'
+        arrTags[0].style.color = 'black'
+        console.log('textContent', arrTags[0].children[0].textContent)
+        console.log('innerHTML', arrTags[0].children[0].innerHTML)
+        console.log('innerText', arrTags[0].children[0].innerText)
+        console.log('outerText', arrTags[0].children[0].outerText)
       } else {
         this.tags.push(tag.toUpperCase())
         this.allTags.push(tag.toUpperCase())
